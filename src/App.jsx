@@ -1,12 +1,10 @@
 // Create a new React app using Vite or CRA
 // Vite: npm create vite@latest frontend --template react
-// CRA: npx create-react-app frontend
 // cd frontend && npm install
 
 import React, { useEffect, useState } from 'react';
 
-// const API_URL = 'http://localhost:5000/posts';
-const API_URL = 'https://blog-backend1-esen.onrender.com/posts'
+const API_URL = import.meta.env.VITE_API_URL;
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -14,7 +12,7 @@ const App = () => {
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch(`${API_URL}/posts`)
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
@@ -22,7 +20,7 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = { title, content };
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}/posts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newPost),
