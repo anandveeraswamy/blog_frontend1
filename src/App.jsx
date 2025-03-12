@@ -5,7 +5,8 @@
 
 import React, { useEffect, useState } from 'react';
 
-const API_URL = 'http://localhost:5000/posts';
+// const API_URL = 'http://localhost:5000/posts';
+const API_URL = 'https://blog-backend1-esen.onrender.com/posts'
 
 const App = () => {
   const [posts, setPosts] = useState([]);
